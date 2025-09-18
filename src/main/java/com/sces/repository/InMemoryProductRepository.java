@@ -36,6 +36,11 @@ public class InMemoryProductRepository implements ProductRepository {
         return Optional.ofNullable(byId.get(id));
     }
 
+     @Override
+    public synchronized Optional<Product> findById(long id) {  
+        return Optional.ofNullable(byId.get(id));
+    }
+   
     @Override
     public synchronized List<Product> findAll() {
         return new ArrayList<>(byId.values());
