@@ -18,6 +18,8 @@ import com.sces.repository.InMemoryProductRepository;
 import com.sces.repository.ProductRepository;
 import com.sces.service.DefaultProductService;
 import com.sces.service.ProductService;
+import com.sces.exception.NonPositiveQuantityException;
+import com.sces.exception.ProductNotFoundException;
 
 class ProductServiceTest {
 
@@ -96,4 +98,32 @@ class ProductServiceTest {
         assertTrue(p2.toString().contains("USB-C"));
         assertTrue(p2.toString().startsWith("#"));
     }
+    
+    @Test
+    @DisplayName("Adicionar estoque com sucesso soma a quantidade e mantém o mesmo ID")
+    void addStock_success() {
+        Product p = service.createProduct("SSD", "NVMe", 2);
+        Product updated = service.addStock(p.getId(), 3);
+        assertEquals(p.getId(), updated.getId());
+        assertEquals(5, updated.getQuantity());
+        assertEquals("SSD", updated.getName());
+    }
+
+    @Test
+    @DisplayName("Adicionar estoque falha quando ID não encontrado")
+    void addStock_idNotFound_throws() {
+        assertThrows(ProductNotFoundException.class,
+                () -> service.addStock(999L, 5));
+    }
+
+    @Test
+    @DisplayName("Adicionar estoque rejeita quantidades não positivas (0 e negativas)")
+    void addStock_nonPositive_rejected() {
+        Product p = service.createProduct("Ram", "16GB", 1);
+        assertThrows(NonPositiveQuantityException.class,
+                () -> service.addStock(p.getId(), 0));
+        assertThrows(NonPositiveQuantityException.class,
+                () -> service.addStock(p.getId(), -3));
+    }
+
 }

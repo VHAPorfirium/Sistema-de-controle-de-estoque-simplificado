@@ -9,6 +9,8 @@ import com.sces.exception.NegativeQuantityException;
 import com.sces.model.Product;
 import com.sces.repository.InMemoryProductRepository;
 import com.sces.repository.ProductRepository;
+import com.sces.exception.NonPositiveQuantityException;
+import com.sces.exception.ProductNotFoundException;
 
 public class DefaultProductService implements ProductService {
 
@@ -41,5 +43,22 @@ public class DefaultProductService implements ProductService {
         return repo.findAll().stream()
                 .sorted(Comparator.comparingLong(Product::getId))
                 .toList();
+    }
+
+    @Override
+    public Product addStock(long id, int units) { // <--- NOVO
+        if (units <= 0) {
+            throw new NonPositiveQuantityException(units);
+        }
+        Product existing = repo.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException(id));
+
+        Product updated = new Product(
+                existing.getId(),
+                existing.getName(),
+                existing.getDescription(),
+                existing.getQuantity() + units
+        );
+        return repo.save(updated);
     }
 }

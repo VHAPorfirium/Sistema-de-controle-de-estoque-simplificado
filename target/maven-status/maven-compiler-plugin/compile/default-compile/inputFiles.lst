@@ -1,0 +1,9 @@
+C:\Users\kaiqu\Documents\Sistema-de-controle-de-estoque-simplificado\src\main\java\com\sces\exception\DuplicateProductNameException.java
+C:\Users\kaiqu\Documents\Sistema-de-controle-de-estoque-simplificado\src\main\java\com\sces\exception\InvalidProductNameException.java
+C:\Users\kaiqu\Documents\Sistema-de-controle-de-estoque-simplificado\src\main\java\com\sces\exception\NegativeQuantityException.java
+C:\Users\kaiqu\Documents\Sistema-de-controle-de-estoque-simplificado\src\main\java\com\sces\main\App.java
+C:\Users\kaiqu\Documents\Sistema-de-controle-de-estoque-simplificado\src\main\java\com\sces\model\Product.java
+C:\Users\kaiqu\Documents\Sistema-de-controle-de-estoque-simplificado\src\main\java\com\sces\repository\InMemoryProductRepository.java
+C:\Users\kaiqu\Documents\Sistema-de-controle-de-estoque-simplificado\src\main\java\com\sces\repository\ProductRepository.java
+C:\Users\kaiqu\Documents\Sistema-de-controle-de-estoque-simplificado\src\main\java\com\sces\service\DefaultProductService.java
+C:\Users\kaiqu\Documents\Sistema-de-controle-de-estoque-simplificado\src\main\java\com\sces\service\ProductService.java

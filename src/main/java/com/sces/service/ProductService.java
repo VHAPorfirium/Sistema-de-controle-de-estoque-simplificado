@@ -8,4 +8,6 @@ public interface ProductService {
     Product createProduct(String name, String description, int initialQuantity);
 
     List<Product> listAll();
+
+    Product addStock(long id, int units); 
 }
